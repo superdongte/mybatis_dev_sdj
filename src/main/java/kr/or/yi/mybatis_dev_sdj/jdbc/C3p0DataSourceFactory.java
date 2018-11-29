@@ -9,7 +9,7 @@ import org.apache.ibatis.datasource.DataSourceFactory;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
-public class c3p0DataSourceFactory implements DataSourceFactory {
+public class C3p0DataSourceFactory implements DataSourceFactory {
 	private ComboPooledDataSource dataSource = null;
 	
 	@Override

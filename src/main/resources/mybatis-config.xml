@@ -4,14 +4,16 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<properties resource="application.properties"/>
+	
 	<typeAliases>
-		<package name="kr.or.mybatise_c3p0.dto"/>
-		<!-- <typeAlias type="kr.or.mybatise_c3p0.dto.Title" alias="Title"/>
-		<typeAlias type="kr.or.mybatise_c3p0.dto.Department" alias="Department"/>
-		<typeAlias type="kr.or.mybatise_c3p0.dto.Employee" alias="Employee"/> -->
+		<package name="kr.or.yi.mybatis_dev_sdj.dto"/>
 	</typeAliases>
-	<environments default="development">
-		<environment id="development">
+	<typeHandlers>
+		<package name="kr.or.yi.mybatis_dev_sdj.typehandlers"></package>
+	</typeHandlers>
+	
+	<environments default="development1">
+		<environment id="development1">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="${driver}" />
@@ -20,9 +22,18 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 				<property name="password" value="${password}" />
 			</dataSource>
 		</environment>
+		
+		<environment id="development2">
+			<transactionManager type="JDBC" />
+			<dataSource type="kr.or.yi.mybatis_dev_sdj.jdbc.C3p0DataSourceFactory">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
 	</environments>
 	<mappers>
-		
-	
+		<package name="kr.or.yi.mybatis_dev_sdj.dao"/>
 	</mappers>
 </configuration>
