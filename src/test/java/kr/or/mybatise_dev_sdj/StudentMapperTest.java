@@ -66,7 +66,20 @@ public class StudentMapperTest extends AbstractTest {
 	public void test05deleteStudent() {
 		log.debug("test05deleteStudent()");
 		int deleteStudent = dao.deleteStudent(3);
-		Assert.assertSame(1, deleteStudent);
-				
+		Assert.assertSame(1, deleteStudent);		
 	}
-}
+	@Test
+	public void test06selectStudentByAllForResultMap() {
+		log.debug("selectStudentByAllForResultMap()");
+		List<Student>list = dao.selectStudentByAllForResultMap();
+		Assert.assertNotNull(list);
+	}
+	@Test
+	public void test08selectStudentByNoForResultMapExtends() {
+		Student student = new Student();
+		student.setStudId(1);
+		Student exeStd = dao.selectStudentByNoForResultMapExtends(student);
+		Assert.assertNotNull(exeStd);
+	}
+	
+}//end of class

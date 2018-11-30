@@ -1,6 +1,7 @@
 package kr.or.yi.mybatis_dev_sdj.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -46,5 +47,28 @@ public class StudentMapperImpl implements StudentMapper {
 			return res;
 			
 		}
+	}
+	@Override
+	public List<Student> selectStudentByAllForResultMap() {
+		try(SqlSession sqlSession = MyBaisSqlSessionFactory.openSession();){
+			return sqlSession.selectList(namespace + ".selectStudentByAllForResultMap");
+		}	
+	}
+	@Override
+	public List<Map<String, Object>> selectStudentByAllHashMap() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Student selectStudentByNoForResultMapExtends(Student student) {
+		try(SqlSession sqlSession = MyBaisSqlSessionFactory.openSession();){
+			return sqlSession.selectOne(namespace + ".selectStudentByNoForResultMapExtends", student);
+		}
+		
+	}
+	@Override
+	public Student selectStucentByNoForResultMapExtends2(int studId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

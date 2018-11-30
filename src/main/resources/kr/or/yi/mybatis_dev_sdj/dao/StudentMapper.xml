@@ -6,9 +6,11 @@
 		from students
 	</sql>
 	<sql id="where">
+		<where>
 		<if test="studId != null">
 			stud_id = #{studId};
 		</if>
+		</where>
 	</sql>
 	
 	<select id="selectStudentbyNo" parameterType="Student" resultType="Student">
@@ -41,4 +43,47 @@
 		delete from students
 		where stud_id=#{studId}
 	</select>
+	<!-- resultMap -->
+	<resultMap id="StudentResult" type="Student">
+		<id property="studId" column="stud_id"/>
+		<result property="name" column="name"/>
+		<result property="email" column="email"/>
+		<result property="phone" column="phone"/>
+		<result property="dob" column="dob"/>
+	</resultMap>
+	
+	<resultMap type="Student" id="StudentWithAdressResult" extends="StudentResult">
+		<result property="address.addrId" column="addr_Id"/>
+		<result property="address.street" column="street"/>
+		<result property="address.city" column="city"/>
+		<result property="address.state" column="state"/>
+		<result property="address.zip" column="zip"/>
+		<result property="address.country" column="country"/>
+	</resultMap>
+	
+	<sql id="selectJoinAdressSql">
+		select Stud_id, name, email, phone, A.addr_id, street, city, state, zip, country
+		from students s left outer join addresses A on s.ADDR_ID=a.ADDR_ID
+	</sql>
+	
+ 	<select id="selectStudentByNoForResultMapExtends" parameterType="Student" 
+					resultMap="StudentWithAdressResult">
+		<include refid="selectJoinAdressSql"></include>
+		<include refid="where"></include>
+	</select> 
+	
+	
+	
+	
+	<select id="selectStudentByAllForResultMap" resultMap="StudentResult">
+		<include refid="selectSql"></include>
+	</select>
+	<!-- hashMap -->
+	<select id="selectStudentByAllHashMap" resultType="map">
+		<include refid="selectSql"></include>
+	</select>
+	
+	
+	
+	
 </mapper>
