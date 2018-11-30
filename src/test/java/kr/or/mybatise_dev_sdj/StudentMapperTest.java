@@ -2,6 +2,8 @@ package kr.or.mybatise_dev_sdj;
 
 import static org.junit.Assert.*;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.junit.Assert;
@@ -10,6 +12,7 @@ import org.junit.Test;
 
 import kr.or.yi.mybatis_dev_sdj.dao.StudentMapper;
 import kr.or.yi.mybatis_dev_sdj.dao.StudentMapperImpl;
+import kr.or.yi.mybatis_dev_sdj.dto.PhoneNumber;
 import kr.or.yi.mybatis_dev_sdj.dto.Student;
 
 public class StudentMapperTest extends AbstractTest {
@@ -34,6 +37,14 @@ public class StudentMapperTest extends AbstractTest {
 	@Test
 	public void test03insertStudent() {
 		log.debug("test03insertStudent()");
-		
+		Calendar newDate = GregorianCalendar.getInstance();
+		Student student = new Student();
+		student.setStudId(3);
+		student.setName("kimgay");
+		student.setEmail("kim@naver.com");
+		student.setPhone(new PhoneNumber("010-2343-2443"));
+		student.setDob(newDate.getTime());
+		int res = dao.insertStudent(student);
+		Assert.assertSame(1, res);
 	}
 }
