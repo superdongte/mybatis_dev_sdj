@@ -61,6 +61,21 @@
 		<result property="address.country" column="country"/>
 	</resultMap>
 	
+	<resultMap type="Student" id="StudentWithAdressResult2" extends="StudentResult">
+		<id property="studId" column="stud_id"/>
+		<result property="name" column="name"/>
+		<result property="email" column="email"/>
+		<result property="phone" column="phone"/>
+		<result property="dob" column="dob"/>	
+		<result property="address.addrId" column="addr_Id"/>
+		<result property="address.street" column="street"/>
+		<result property="address.city" column="city"/>
+		<result property="address.state" column="state"/>
+		<result property="address.zip" column="zip"/>
+		<result property="address.country" column="country"/>
+	</resultMap>
+	
+	
 	<sql id="selectJoinAdressSql">
 		select Stud_id, name, email, phone, A.addr_id, street, city, state, zip, country
 		from students s left outer join addresses A on s.ADDR_ID=a.ADDR_ID
@@ -72,9 +87,13 @@
 		<include refid="where"></include>
 	</select> 
 	
-	
-	
-	
+	<select id="selectStudentByNoForResultMapExtends2" parameterType="int" 
+					resultMap="StudentWithAdressResult">
+		select Stud_id, name, email, phone, A.addr_id, street, city, state, zip, country
+		from students s join addresses A on s.ADDR_ID=a.ADDR_ID
+		where stud_id=#{studId};	
+	</select>
+
 	<select id="selectStudentByAllForResultMap" resultMap="StudentResult">
 		<include refid="selectSql"></include>
 	</select>

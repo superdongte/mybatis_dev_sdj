@@ -68,7 +68,8 @@ public class StudentMapperImpl implements StudentMapper {
 	}
 	@Override
 	public Student selectStucentByNoForResultMapExtends2(int studId) {
-		// TODO Auto-generated method stub
-		return null;
+		try(SqlSession sqlSession = MyBaisSqlSessionFactory.openSession();){
+			return sqlSession.selectOne(namespace + ".selectStudentByNoForResultMapExtends2", studId);
+		}
 	}
 }
