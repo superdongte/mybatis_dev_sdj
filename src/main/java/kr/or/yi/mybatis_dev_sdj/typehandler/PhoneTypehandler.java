@@ -1,4 +1,4 @@
-package kr.or.yi.mybatis_dev_sdj.dao.typehandler;
+package kr.or.yi.mybatis_dev_sdj.typehandler;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -15,8 +15,8 @@ public class PhoneTypehandler extends BaseTypeHandler<PhoneNumber>{
 	@Override
 	public void setNonNullParameter(PreparedStatement ps, int i, PhoneNumber parameter, JdbcType jdbcType)
 			throws SQLException {
-		ps.setString(i, parameter.toString());
-		
+		// TODO Auto-generated method stub
+		ps.setString(i, parameter.toString()); //phoneNumber의 오버라이딩
 	}
 
 	@Override

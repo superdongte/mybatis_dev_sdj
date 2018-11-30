@@ -34,5 +34,14 @@ public class StudentMapperImpl implements StudentMapper {
 		}
 		
 	}
+
+	@Override
+	public int updateStudent(Student student) {
+		try(SqlSession sqlSession = MyBaisSqlSessionFactory.openSession()){
+			int res = sqlSession.insert(namespace + ".updateStudent", student);
+			sqlSession.commit();
+			return res;
+		}
+	}
 	
 }
