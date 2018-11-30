@@ -31,5 +31,9 @@ public class StudentMapperTest extends AbstractTest {
 		List<Student> lists = dao.selectStudentByAll();
 		Assert.assertNotNull(lists);
 	}
-
+	@Test
+	public void test03insertStudent() {
+		log.debug("test03insertStudent()");
+		
+	}
 }
