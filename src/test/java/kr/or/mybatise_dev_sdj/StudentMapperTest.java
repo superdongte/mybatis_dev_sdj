@@ -86,4 +86,12 @@ public class StudentMapperTest extends AbstractTest {
 		Student lists = dao.selectStucentByNoForResultMapExtends2(1);
 		Assert.assertNotNull(lists);
 	}
+	@Test
+	public void test10selectStudentByNoAssociation() {
+		Student student = new Student();
+		student.setStudId(1);
+		
+		Student serchStded = dao.selectStudentByAssociation(student);
+		Assert.assertNotNull(serchStded);
+	}
 }//end of class

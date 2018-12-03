@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.yi.mybatis_dev_sdj.dao.StudentMapper">
+	<resultMap id="StudentAssociation" type="Student" extends="StudentResult">
+		<association property="adress" resultMap="kr.or.yi.mybatis_dev_sdj.dao.AddressMapper.AddressResult"></association>
+	</resultMap>
 	<sql id ="selectSql">
 		select stud_id as studId, name, email, dob, phone
 		from students
@@ -52,7 +55,7 @@
 		<result property="dob" column="dob"/>
 	</resultMap>
 	
-	<resultMap type="Student" id="StudentWithAdressResult" extends="StudentResult">
+	 <resultMap type="Student" id="StudentWithAdressResult" extends="StudentResult">
 		<result property="address.addrId" column="addr_Id"/>
 		<result property="address.street" column="street"/>
 		<result property="address.city" column="city"/>
