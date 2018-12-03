@@ -57,7 +57,7 @@ public interface StudentMapper {
 		@Result(id=true, column="stud_id", property="studId"),
 		@Result(column="name", property="name"),
 		@Result(column="email", property="email"),
-		@Result(column="addr_id", property="adress",
+		@Result(column="addr_id", property="address",
 			one=@One(select="kr.or.yi.mybatis_dev_sdj.dao.AddressMapper.selectAddressById"))
 	})
 	Student selectStudentOneToOne(int studId);
