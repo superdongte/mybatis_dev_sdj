@@ -77,4 +77,11 @@ public class StudentMapperImpl implements StudentMapper {
 		
 	}
 
+	@Override
+	public Student selectStudentOneToOne(int studId) {
+		try(SqlSession sqlSession = MyBaisSqlSessionFactory.openSession()){
+			return sqlSession.selectOne(namespace + ".selectStudentOneToOne", studId);
+		}
+	}
+
 }//end of StudentMapperImpl

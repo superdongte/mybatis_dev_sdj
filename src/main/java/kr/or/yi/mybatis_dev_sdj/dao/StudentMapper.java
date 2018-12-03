@@ -3,6 +3,7 @@ package kr.or.yi.mybatis_dev_sdj.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
@@ -51,5 +52,13 @@ public interface StudentMapper {
 	@ResultMap("mappers.StudentMapper.StudentResult")
 	List<Student> selectStudentByAllForMapper();
 	
-	
+	@Select("SELECT * FROM STUDENTS WHERE STUD_ID=#{studId}")
+	@Results({
+		@Result(id=true, column="stud_id", property="studId"),
+		@Result(column="name", property="name"),
+		@Result(column="email", property="email"),
+		@Result(column="addr_id", property="adress",
+			one=@One(select="kr.or.yi.mybatis_dev_sdj.dao.AddressMapper.selectAddressById"))
+	})
+	Student selectStudentOneToOne(int studId);
 }//end of StudentMapper
